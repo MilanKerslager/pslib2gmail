@@ -1,0 +1,67 @@
+#!/bin/bash
+
+# ============================================================
+# Soubory
+# ============================================================
+
+export MAIL_SYNC_DIR="$HOME/pslib2gmail"
+
+export LOCK_FILE="$MAIL_SYNC_DIR/mail-sync.lock"
+export LOG_FILE="$MAIL_SYNC_DIR/mail-sync.log"
+export PID_FILE="$MAIL_SYNC_DIR/mail-sync.pid"
+
+export O365_TOKEN_FILE="$MAIL_SYNC_DIR/o365-token.json"
+export O365_ACCESS_TOKEN_FILE="$MAIL_SYNC_DIR/o365_access_token"
+export O365_REFRESH_TOKEN_SCRIPT="$MAIL_SYNC_DIR/refresh_o365_token.sh"
+
+export GMAIL_TOKEN_FILE="$MAIL_SYNC_DIR/gmail-token.json"
+export GMAIL_ACCESS_TOKEN_FILE="$MAIL_SYNC_DIR/gmail_access_token"
+export GMAIL_REFRESH_TOKEN_SCRIPT="$MAIL_SYNC_DIR/refresh_gmail_token.sh"
+
+
+# ============================================================
+# O365
+# ============================================================
+
+export O365_EMAIL="yourname@o365_domain.com"
+
+# Application (client) ID z Entra ID / App Registration
+export O365_CLIENT_ID="YOUR-CLIENT-ID"
+
+# ID tenantu.
+# Pro jeden konkrétní tenant použij jeho Tenant ID.
+export O365_TENANT_ID="YOUR-TENANT-ID" # nebo e7bf04a2-63c8-4a47-a0bd-28d0aa88f6ec
+
+# Scope potřebný pro IMAP OAuth2.
+#
+# Pokud máš již funkční refresh token získaný s jiným přesným
+# scope, ponech zde scope, se kterým byl token získán.
+export O365_SCOPE="https://outlook.office.com/IMAP.AccessAsUser.All offline_access"
+
+
+# ============================================================
+# Gmail
+# ============================================================
+
+export GMAIL_EMAIL="yourname@gmail_domain.com"
+export GMAIL_CLIENT_ID="YOUR-CLIENT-ID"
+export GMAIL_CLIENT_SECRET="YOUR-CLIENT-SECRET"
+
+# ============================================================
+# OAuth
+# ============================================================
+
+export O365_TOKEN_URL="https://login.microsoftonline.com/${O365_TENANT_ID}/oauth2/v2.0/token"
+export GMAIL_TOKEN_URL="https://oauth2.googleapis.com/token"
+
+# Access token obnovíme, pokud jeho platnost skončí za méně
+# než tento počet sekund.
+export TOKEN_REFRESH_MARGIN=300
+
+
+# ============================================================
+# Synchronizace e-mailů
+# ============================================================
+
+export SYNC_EMAILS="$MAIL_SYNC_DIR/sync_o365_to_gmail.py"
+
